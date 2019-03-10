@@ -14,7 +14,7 @@ function main() {
     value="${tx_value}"
     echo -e "${name}\t${value}\t$(date -u +%s)"
 
-		name="lxc_network.rx.${ct_name}"
+    name="lxc_network.rx.${ct_name}"
     value="${rx_value}"
     echo -e "${name}\t${value}\t$(date -u +%s)"
   done
