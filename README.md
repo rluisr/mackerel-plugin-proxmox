@@ -10,8 +10,16 @@ Supported metrics
 -----------------
 
 - [ ] CPU
+  - CPU Use
+  - CPU User Use
+  - CPU System Use
 - [x] Memory
+  - Max allowed
+  - Used
 - [x] Network
+  - IN
+  - OUT
+- [ ] Status
 
 Screen shot
 ------------

@@ -3,22 +3,17 @@
 script_dir=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
 source ${script_dir}/common.sh
 
-function getCTList() {
-  array_cts=$( /usr/bin/lxc-ls -1 )
-  echo "${array_cts}"
-}
-
 function main() {
-  for ct_number in $( getCTList )
+  for ct_number in $( get_ct_list )
   do
-    ct_name=$( getCTName "${ct_number}" )
+    ct_name=$( get_ct_name "${ct_number}" )
 
     name="lxc_memory.max.${ct_name}"
-    value=$( cat /sys/fs/cgroup/memory/lxc/"${ct_number}"/memory.limit_in_bytes )
+    value=$( get_metric_from_cgroup "${ct_number}" memory memory.max_usage_in_bytes )
     echo -e "${name}\t${value}\t$(date -u +%s)"
 
-    name="lxc_memory.usage.${ct_name}"
-    value=$( cat /sys/fs/cgroup/memory/lxc/"${ct_number}"/memory.usage_in_bytes )
+    name="lxc_memory.used.${ct_name}"
+    value=$( get_metric_from_cgroup "${ct_number}" memory memory.usage_in_bytes )
     echo -e "${name}\t${value}\t$(date -u +%s)"
   done
 }

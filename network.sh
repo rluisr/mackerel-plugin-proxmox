@@ -4,9 +4,9 @@ script_dir=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
 source ${script_dir}/common.sh
 
 function main() {
-  for ct_number in $( getCTList )
+  for ct_number in $( get_ct_list )
   do
-    ct_name=$( getCTName "${ct_number}" )
+    ct_name=$( get_ct_name "${ct_number}" )
     tx_value=$( lxc-info -H --name "${ct_number}" | sed -n 10p | awk '{print $3}' )
     rx_value=$( lxc-info -H --name "${ct_number}" | sed -n 11p | awk '{print $3}' )
 
