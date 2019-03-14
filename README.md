@@ -4,12 +4,10 @@ mackerel-plugin-proxmox
 Send LXC container metrics to Mackerel.  
 Support Proxmox.
 
-> This plugin is currently wip.
-
 Supported metrics
 -----------------
 
-- [ ] CPU
+- [x] CPU
   - CPU Use
   - CPU User Use
   - CPU System Use
@@ -19,19 +17,28 @@ Supported metrics
 - [x] Network
   - IN
   - OUT
-- [ ] Status
+- [x] Status
 
 Screen shot
 ------------
 
-![](https://files-uploader.xzy.pw/upload/20190310212747_4976434c48.png)
+![](https://files-uploader.xzy.pw/upload/20190314231406_635a354853.png)
 
 Install
 -------
 
-```
+```yml
+[plugin.metrics.lxc_status]
+command = "/root/mackerel-plugin-proxmox/status.sh"
+
+[plugin.metrics.lxc_cpu]
+command = "/root/mackerel-plugin-proxmox/cpu.sh"
+
 [plugin.metrics.lxc_memory]
 command = "/root/mackerel-plugin-proxmox/memory.sh"
+
+[plugin.metrics.lxc_disk]
+command = "/root/mackerel-plugin-proxmox/disk.sh"
 
 [plugin.metrics.lxc_network]
 command = "/root/mackerel-plugin-proxmox/network.sh"
